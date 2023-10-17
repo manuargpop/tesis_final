@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="images">
+    <file>icone-pdf-symbole-png-rouge.png</file>
+    <file>pexels-mart-production-7088483.jpg</file>
+    <file>consulta_medica-exitosa.jpg</file>
+    <file>foto-p.png</file>
+    <file>inicio.png</file>
+  </qresource>
+</RCC>
