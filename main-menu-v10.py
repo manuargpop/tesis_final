@@ -12060,13 +12060,15 @@ class Ui_MainWindow(object):
         # si es 0 es una letra del nombre completo,
         # si es 1 son todos los datos de una cita,
         # si es 2 son las letras de tipo de paciente
-        # el cuarto dato es solo para medidas de citas, te da una medida e particular de la cita seleccionada anteriormente
+        # el cuarto dato es solo para medidas de citas, te da una medida e particular de la cita seleccionada
+        # anteriormente
         # nota: no tienes que usar los 4, solo usa los nesezarios
-        # print(all_data[0][1][0][1])
         # por ejemplo arriba llamame a primo josue, dame todas sus medidas, solo las de la cita 1, solo su peso
         # print(all_data[0][1][0][13])
 
-        #esto llama a los pacientes y los cuenta el total ademas de contar por tipos de paciente y los asigna en sus label (done)
+        # esto llama a los pacientes y los cuenta el total ademas de contar por tipos de paciente y los asigna en sus
+        # label (done)
+
         for position, datos in enumerate(data):
             if str(datos.__dict__.get('t_pac')) == "Adulto":
                 contadores[0] += 1
@@ -12091,14 +12093,6 @@ class Ui_MainWindow(object):
                 print("error")
         self.lbl_cita_total.setText(str(contadores[5]))
 
-
-        #esto calcula la edad promedio de los pacientes (no esta listo) y lo asigna en su label (wip)
-
-        # for position, datos in enumerate(data):
-        #     edad_total += getedad(datos.__dict__.get('fnacimiento'), datos.__dict__.get('fecha'))
-        # edad_prom = edad_total / contadores[2]
-        # self.lbl_edad_promedio.setText(str(edad_prom))
-
         #esto calcula cuantos pacientes hombres y mujeres hay en el sistema y los coloca en sus labels (done)
         for position, datos in enumerate(data):
             if str(datos.__dict__.get('sex')) == "Masculino":
@@ -12121,7 +12115,14 @@ class Ui_MainWindow(object):
         max = contadores[2]
         self.comboBox__paciente1.currentTextChanged.connect(lambda: cambio_paciente(max))
 
-        # boton que se usa para comparar los datos introducidos
+        # esto calcula la edad promedio de los pacientes (no esta listo) y lo asigna en su label (wip)
+
+        # for position, datos in enumerate(data):
+        #     edad_total += getedad(datos.__dict__.get('fnacimiento'), datos.__dict__.get('fecha'))
+        # edad_prom = edad_total / contadores[2]
+        # self.lbl_edad_promedio.setText(str(edad_prom))
+
+        # boton que se usa para comparar los datos introducidos (wip)
 
         #self.btn_comparar.clicked.connect(comparar()) 
 
