@@ -7468,23 +7468,7 @@ class Ui_MainWindow(object):
         self.gridLayout_30.setObjectName("gridLayout_30")
         
         self.plot = pg.plot()
-        y1 = [76,0]
-        y2 = [0,64]
-        xlab = ['CITA 1', 'CITA 2']
-        xval = list(range(1,len(xlab)+1))
-        print(xval)
-        ticks=[]
-        for i, item in enumerate(xlab):
-            ticks.append( (xval[i], item) )
-        ticks = [ticks]
-        bargraph = pg.BarGraphItem(x=xval, height=y1, width=0.5, brush ='#1f78b4')
-        self.plot.addItem(bargraph)
-        bargraph2 = pg.BarGraphItem(x=xval, height=y2, width=0.5, brush ="#fe7f0e") 
-        self.plot.addItem(bargraph2)
-        self.plot.setBackground("w")
-        ax = self.plot.getAxis('bottom')
-        ax.setTicks(ticks)
-        
+        self.plot.setBackground("w")        
         self.gridLayout_30.addWidget(self.plot, 0, 2, 1, 1)
 
         self.frame_comparacion = QtWidgets.QFrame(parent=self.fr_est_citas)
@@ -8567,8 +8551,6 @@ class Ui_MainWindow(object):
         self.label_cita2.setText(_translate("MainWindow", "Cita 2"))
         self.label_dato.setText(_translate("MainWindow", "Dato"))
         self.btn_comparar.setText(_translate("MainWindow", "Ver comparacion"))
-        self.label_dato1.setText(_translate("MainWindow", "% De Grasa Cita 1"))
-        self.label_dato2.setText(_translate("MainWindow", "% De Grasa Cita 2"))
         self.label_comparacion_dif1.setText(_translate("MainWindow", "Cita 1: 52%"))
         self.label_comparacion_dif2.setText(_translate("MainWindow", "Cita 2: 48%"))
         self.label_comparacion_diftotal.setText(_translate("MainWindow", "Diferencia: -4%"))
@@ -9366,6 +9348,7 @@ class Ui_MainWindow(object):
             return datofp > lim
         return False
 
+# arreglar los cont123
     def comprobar(self):
 
         if self.btn_sigR1.isEnabled():
@@ -9695,7 +9678,6 @@ class Ui_MainWindow(object):
                                         medidas.append(table3.item(cont2, 4).text())
                                         cont3 += 1
                                 cont2 += 1
-
                         cont1 += 1
 
                     self.lbl_imc.setText("I.M.C:")
@@ -9747,6 +9729,7 @@ class Ui_MainWindow(object):
                                                 if cont4 == 8:
                                                     for i in range(7):
                                                         medidas.append(table5.item(cont5, 4).text())
+                                                        cont5 += 1
                                                 cont4 += 1
                                         cont3 += 1
                                 cont2 += 1
@@ -11966,8 +11949,6 @@ class Ui_MainWindow(object):
                     self.combobox_dato.clear()
                     while contador_tipoa < 13:
                         self.combobox_dato.addItem(datos_adulto[contador_tipoa])
-                        print(datos_adulto[contador_tipoa])
-                        print(contador_tipoa)
                         contador_tipoa += 1
                     print("done")
 
@@ -11976,8 +11957,6 @@ class Ui_MainWindow(object):
                     self.combobox_dato.clear()
                     while contador_tipot < 10:
                         self.combobox_dato.addItem(datos_atleta[contador_tipot])
-                        print(datos_adulto[contador_tipot])
-                        print(contador_tipot)
                         contador_tipot += 1
                     print("done")
 
@@ -11989,11 +11968,18 @@ class Ui_MainWindow(object):
                     if contenido == all_data[contador_p][3]:
                         print("good paciente")
                         while contador_c < len(all_data[contador_p][1]):
-                            combo_cita1 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][13])+" "+str(all_data[contador_p][1][contador_c][14])
-                            self.combobox_cita1.addItem(combo_cita1)
-                            combo_cita2 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][13])+" "+str(all_data[contador_p][1][contador_c][14])
-                            self.combobox_cita2.addItem(combo_cita2)
-                            contador_c += 1
+                            if tipo == "Adulto":
+                                combo_cita1 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][13])+" "+str(all_data[contador_p][1][contador_c][14])
+                                self.combobox_cita1.addItem(combo_cita1)
+                                combo_cita2 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][13])+" "+str(all_data[contador_p][1][contador_c][14])
+                                self.combobox_cita2.addItem(combo_cita2)
+                                contador_c += 1
+                            else:
+                                combo_cita1 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][45])+" "+str(all_data[contador_p][1][contador_c][46])
+                                self.combobox_cita1.addItem(combo_cita1)
+                                combo_cita2 = str(contador_c)+" "+str(all_data[contador_p][1][contador_c][45])+" "+str(all_data[contador_p][1][contador_c][46])
+                                self.combobox_cita2.addItem(combo_cita2)
+                                contador_c += 1
                         else:
                             contador_p += 1
                     else:
@@ -12001,18 +11987,41 @@ class Ui_MainWindow(object):
                         print("no es el paciente")
 
         def comparar():
+            self.label_dato1.setText("")
+            self.label_dato2.setText("")
             fix_atl = [0, 1, 2, 6, 9, 11, 15, 17, 18, 27]
-            paciente = self.comboBox__paciente1.currentIndex()
+            paciente = self.comboBox__paciente1.currentIndex()-1
             cita1 = self.combobox_cita1.currentIndex()
             cita2 = self.combobox_cita2.currentIndex()
             dato = self.combobox_dato.currentIndex()
             tipo = str(all_data[paciente][2])
             if tipo == "Atleta":
                 dato = fix_atl[dato]
+                print("es atleta")
             dato1 = all_data[paciente][1][cita1][dato]
+            print(all_data[paciente][1][cita1])
             dato2 = all_data[paciente][1][cita2][dato]
+            print(all_data[paciente][1][cita2])
             self.label_dato1.setText(str(dato1))
             self.label_dato2.setText(str(dato2))
+            
+            y1 = [int(dato1),0]
+            y2 = [0,int(dato2)]
+            y1 = [76,0]
+            y2 = [0,52]
+            xlab = ['CITA 1', 'CITA 2']
+            xval = list(range(1,len(xlab)+1))
+            ticks=[]
+            for i, item in enumerate(xlab):
+                ticks.append( (xval[i], item) )
+            ticks = [ticks]         
+            bargraph = pg.BarGraphItem(x=xval, height=y1, width=0.5, brush ='#1f78b4')
+            self.plot.addItem(bargraph)
+            bargraph2 = pg.BarGraphItem(x=xval, height=y2, width=0.5, brush ="#fe7f0e") 
+            self.plot.addItem(bargraph2)
+            self.plot.setBackground("w")
+            ax = self.plot.getAxis('bottom')
+            ax.setTicks(ticks)
 
         data = []
         # el contador contiene = pacientes adultos, pacientes atletas, pacientes totales, hombres, mujeres
@@ -12029,7 +12038,6 @@ class Ui_MainWindow(object):
                     break
         row_data = []
         all_data = []
-        med = []
         contador = 0
         for position, datos in enumerate(data):
             str(datos.__dict__.get('name'))
@@ -12056,7 +12064,7 @@ class Ui_MainWindow(object):
         # anteriormente
         # nota: no tienes que usar los 4, solo usa los nesezarios
         # por ejemplo arriba llamame a primo josue, dame todas sus medidas, solo las de la cita 1, solo su peso
-        # print(all_data[0][1][0][13])
+        print(all_data[1][1])
 
         # esto llama a los pacientes y los cuenta el total ademas de contar por tipos de paciente y los asigna en sus
         # label (done)
@@ -12115,11 +12123,7 @@ class Ui_MainWindow(object):
             now = datetime.now()
             date = now.strftime("%m/%d/%Y")
             fecha_me = datetime.strptime(str(date), "%m/%d/%Y")
-            print(nacimiento)
-            print(fecha_me)
             edad = (relativedelta(fecha_me, nacimiento).years)
-
-            print(str(edad))
             contador_edadp += 1
             edad_total += int(edad)
         else:
@@ -12128,7 +12132,7 @@ class Ui_MainWindow(object):
 
         # boton que se usa para comparar los datos introducidos (wip)
 
-        #self.btn_comparar.clicked.connect(comparar()) 
+        self.btn_comparar.clicked.connect(lambda: comparar()) 
 
 class Patient:
     def __init__(self, id, name, doc, t_pac, sex, country, fnacimiento, medidas, act_deporte, correo, direccion):
