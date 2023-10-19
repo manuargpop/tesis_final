@@ -1,6 +1,8 @@
 <RCC>
   <qresource prefix="images">
+    <file>table_img.png</file>
     <file>inicio.png</file>
+    <file>download(2).png</file>
     <file>foto-p.png</file>
   </qresource>
 </RCC>

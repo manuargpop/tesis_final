@@ -1,6 +1,13 @@
 <RCC>
   <qresource prefix="icons">
+    <file>calendario_rojo.png</file>
+    <file>database_icon.svg</file>
+    <file>database_FILL0_wght400_GRAD0_opsz48.png</file>
+    <file>reporte_main.png</file>
+    <file>pesas_verde_fullimg.png</file>
+    <file>pacientes_morado.png</file>
     <file>persona.png</file>
+    <file>reportes_azul.png</file>
     <file>fitness.svg</file>
     <file>information-button.png</file>
     <file>age-group.png</file>
