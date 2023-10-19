@@ -1,0 +1,32 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>reportes_hechos_icon.svg</file>
+    <file>reportes_icon.svg</file>
+    <file>lab_profile_FILL0_wght400_GRAD0_opsz40.svg</file>
+    <file>keyboard-down-white.svg</file>
+    <file>-keyboard-arrow-down_90691.ico</file>
+    <file>keyboard_arrow_down_FILL0_wght400_GRAD0_opsz24.svg</file>
+    <file>fitness.svg</file>
+    <file>phone.svg</file>
+    <file>weight.svg</file>
+    <file>height.svg</file>
+    <file>age.svg</file>
+    <file>document.svg</file>
+    <file>icon_lista.png</file>
+    <file>calendar.svg</file>
+    <file>3d.png</file>
+    <file>add_patient.png</file>
+    <file>analytics.png</file>
+    <file>credit.png</file>
+    <file>db.png</file>
+    <file>delete.png</file>
+    <file>export.png</file>
+    <file>import.png</file>
+    <file>informe.png</file>
+    <file>left.png</file>
+    <file>menu-lockw.png</file>
+    <file>menu-openw.png</file>
+    <file>patient.png</file>
+    <file>verinfo.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,31 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>persona.png</file>
+    <file>fitness.svg</file>
+    <file>information-button.png</file>
+    <file>age-group.png</file>
+    <file>phone.svg</file>
+    <file>men.png</file>
+    <file>woman.png</file>
+    <file>weight.svg</file>
+    <file>height.svg</file>
+    <file>age.svg</file>
+    <file>document.svg</file>
+    <file>icon_lista.png</file>
+    <file>calendar.svg</file>
+    <file>3d.png</file>
+    <file>add_patient.png</file>
+    <file>analytics.png</file>
+    <file>credit.png</file>
+    <file>db.png</file>
+    <file>delete.png</file>
+    <file>export.png</file>
+    <file>import.png</file>
+    <file>informe.png</file>
+    <file>left.png</file>
+    <file>menu-lockw.png</file>
+    <file>menu-openw.png</file>
+    <file>patient.png</file>
+    <file>verinfo.png</file>
+  </qresource>
+</RCC>
