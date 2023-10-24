@@ -12182,7 +12182,7 @@ class Ui_MainWindow(object):
                               f"{imc} usted califica que posee\n\n\n                     {imc_info}."
                               f"\n\n\n\n\n\n                     "
                               f"Con un Indicé Cintura Cadera de {icc} usted califica como "
-                              f"{icc_info} y \n\n\n                     {icc_text}.\n\n\n\n\n\n\n                     "
+                              f"{icc_info} y \n\n\n                     {icc_text}.\n\n\n\n                     "
                               f"Con un Indicé de Masa Libre de Grasa de {mlg} usted esta \n\n\n                     "
                               f"{mlg_info}.\n\n\n\n\n\n\n                     "
                               f"Con un Indicé del Área Muscular del brazo de {iamb} "
@@ -12253,6 +12253,17 @@ class Ui_MainWindow(object):
         endomorfo = somatotipo[0]
         mesomorfo = somatotipo[1]
         ectomorfo = somatotipo[2]
+
+        valorx = ectomorfo - endomorfo
+        if valorx > 11:
+            valorx = 11
+        if valorx < -12:
+            valorx = -12
+        valory = 2 * mesomorfo - (endomorfo + ectomorfo)
+        if valory > 12:
+            valory = 12
+        if valory < -12:
+            valory = -12
 
         pdf = FPDF('P', 'pt', (2067, 2756))
         pdf.add_page()
@@ -12524,9 +12535,6 @@ class Ui_MainWindow(object):
         long_info = longitud_relativa_medic(longitud_relativa)
         icor_info = indice_esqueletico_medic(indice_esqueletico)
 
-        valorx = 3
-        valory = -2
-
         pdf.multi_cell(0, 10, f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                               f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                   "
                               f"Con un Indicé de masa corporal de "
@@ -12537,14 +12545,18 @@ class Ui_MainWindow(object):
                               f"Con un Indicé del área muscular del brazo de {iamb} "
                               f"en percentiles se puede \n\n\n\n\n\n\n\n                   afirmar que usted posee "
                               f"{iamb_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n                   "
-                              f"Con un Indicé de complexión de {complexion} usted posee una "
+                              f"Con un Indicé de complexión de {complexion} usted posee una"
+                              f"\n\n\n\n\n\n\n                   "
                               f"{complexion_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n                   "
                               f"Con un Indicé cormico de {indice_cormico} usted califica como"
+                              f"\n\n\n\n\n\n\n                   "
                               f"{cormico_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n                   "
-                              f"Con una longitud relativa de {longitud_relativa} usted califica como "
+                              f"Con una longitud relativa de {longitud_relativa} usted califica "
+                              f"\n\n\n\n\n\n\n                   como "
                               f"{long_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n                   "
-                              f"Con un Indicé esquelético de {indice_esqueletico} usted califica como "
-                              f"{icor_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                              f"Con un Indicé esquelético de {indice_esqueletico} usted califica"
+                              f"\n\n\n\n\n\n\n                   como "
+                              f"{icor_info}.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                               f"                                                                                          "
                               f"Valor en X: {valorx}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                               f"                                                                                          "
@@ -12567,13 +12579,13 @@ class Ui_MainWindow(object):
         ##saber el posicionamiento en la grafica del somatotipo
 
         x = valorx * 25
-        y = (valory * 25) * -1
+        y = (valory * 30) * -1
         imgx = x + (ix + 290 - 12.5)
         imgy = y + (iy + 320 - 12.5)
 
         pdf.image("images/dot.png", imgx, imgy)
 
-        ruta_paciente = f'informes/informe-{nombres}.pdf'
+        ruta_paciente = f'informes/informe-{nombres}-{fecha_me}.pdf'
         pdf.output(ruta_paciente, "F")
 
         msg = QMessageBox()
